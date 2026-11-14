@@ -1,0 +1,14 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base title="Thank You" noindex>
+  <script is:inline slot="head">try { localStorage.removeItem('sk-cart-v1'); } catch (e) {}</script>
+  <section class="wrap narrow section center">
+    <div class="why-icon" aria-hidden="true">👑</div>
+    <h1 class="section-title big gold">THANK YOU,<br /><span class="purple">KREWE!</span></h1>
+    <p class="muted">Your order is confirmed and will be packed and shipped shortly. Stripe will email your receipt.</p>
+    <p class="muted">Every order means the world to us — thank you for supporting a small NOLA business! 💜</p>
+    <p class="gold"><strong>GOOD MUSIC · GOOD VIBES · GOOD GUMMIES 🎷</strong></p>
+    <p><a class="btn btn-gold" href="/shop">KEEP SHOPPING</a></p>
+  </section>
+</Base>

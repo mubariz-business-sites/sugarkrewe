@@ -1,0 +1,27 @@
+---
+import Base from '../layouts/Base.astro';
+import { SITE } from '../data/site.js';
+const socials = Object.entries(SITE.social).filter(([, url]) => url);
+---
+<Base title="Contact" description="Get in touch with Sugar Krewe in Metairie, LA — orders, events, party favors and wholesale questions.">
+  <section class="wrap narrow section">
+    <div class="section-head">
+      <p class="eyebrow gold">GET IN TOUCH</p>
+      <h1 class="section-title big">HIT US UP<br /><span class="purple">ANYTIME</span></h1>
+      <p class="muted">Orders, parties, events, party favors or carrying Sugar Krewe in your shop — we'd love to hear from you.</p>
+    </div>
+    <div class="contact-list">
+      <div class="panel contact-item"><span aria-hidden="true">📍</span><div><div class="label">LOCATION</div><div>{SITE.city}, {SITE.region} {SITE.postalCode}</div></div></div>
+      <a class="panel contact-item" href={`mailto:${SITE.email}`}><span aria-hidden="true">📧</span><div><div class="label">EMAIL</div><div>{SITE.email}</div></div></a>
+      {socials.length > 0 && (
+        <div class="panel">
+          <div class="label">FOLLOW THE KREWE</div>
+          <div class="social-row">
+            {socials.map(([k, url]) => <a class="btn btn-purple" href={url} rel="noopener" target="_blank">{k[0].toUpperCase() + k.slice(1)}</a>)}
+          </div>
+        </div>
+      )}
+      <div class="panel notice">Produced in a cottage kitchen, not a licensed or regulated facility. Made in small batches with big flavor and lots of love!</div>
+    </div>
+  </section>
+</Base>

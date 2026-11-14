@@ -1,0 +1,63 @@
+---
+import Base from '../../layouts/Base.astro';
+import ProductCard from '../../components/ProductCard.astro';
+import { PRODUCTS } from '../../data/products.js';
+import { PRICE, SITE } from '../../data/site.js';
+
+export function getStaticPaths() {
+  return PRODUCTS.map((p) => ({ params: { slug: p.slug }, props: { p } }));
+}
+const { p } = Astro.props;
+const t = p.theme;
+const others = PRODUCTS.filter((x) => x.slug !== p.slug).slice(0, 3);
+const ld = {
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  name: p.name,
+  description: p.desc,
+  image: new URL(`/images/${p.img}.jpg`, SITE.url).href,
+  brand: { '@type': 'Brand', name: SITE.name },
+  offers: {
+    '@type': 'Offer',
+    price: PRICE.toFixed(2),
+    priceCurrency: 'USD',
+    availability: 'https://schema.org/InStock',
+    url: new URL(`/products/${p.slug}`, SITE.url).href,
+  },
+};
+---
+<Base title={p.name} description={`${p.desc} $${PRICE.toFixed(2)} per 4 oz bag.`} image={`/images/${p.img}.jpg`}>
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(ld)} />
+  <section class="wrap section">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="/shop">Shop</a> / <span>{p.name}</span></nav>
+    <div class="product" style={`--bg:${t.bg};--accent:${t.accent};--glow:${t.glow};--text:${t.text};--badge:${t.badge}`}>
+      <div class="product-media">
+        <img src={`/images/${p.img}.webp`} alt={`Bag of ${p.name}`} width="800" height="600" />
+        {p.halal && <span class="halal">حلال HALAL</span>}
+      </div>
+      <div class="product-info" data-buy>
+        <p class="card-tagline">{p.emoji} SUGAR KREWE</p>
+        <h1 class="product-name">{p.name}</h1>
+        <p class="product-tagline">{p.tagline}</p>
+        <p class="product-desc">{p.desc}</p>
+        <div class="flavor-box">FLAVOR: {p.flavor.toUpperCase()}</div>
+        <ul class="tags">{p.tags.map((tag) => <li>✓ {tag}</li>)}</ul>
+        <h2 class="small-head">INGREDIENTS</h2>
+        <p class="ingredients">{p.ingredients}</p>
+        <div class="buy-box">
+          <div class="price big"><span class="cur">$</span>{PRICE.toFixed(2)}<small>per 4 oz bag</small></div>
+          <div class="qty">
+            <button type="button" data-qty-step="-1" aria-label="Fewer bags">−</button>
+            <span data-qty aria-live="polite">1</span>
+            <button type="button" data-qty-step="1" aria-label="More bags">+</button>
+          </div>
+          <button type="button" class="btn btn-accent btn-block" data-add={p.slug}>ADD TO BAG</button>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="wrap section">
+    <h2 class="section-title center">MORE FROM THE KREWE</h2>
+    <div class="grid">{others.map((o) => <ProductCard product={o} />)}</div>
+  </section>
+</Base>

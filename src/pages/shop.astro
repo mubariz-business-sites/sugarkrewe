@@ -1,0 +1,18 @@
+---
+import Base from '../layouts/Base.astro';
+import ProductCard from '../components/ProductCard.astro';
+import { PRODUCTS } from '../data/products.js';
+import { PRICE, FREE_SHIP_MIN } from '../data/site.js';
+---
+<Base title="Shop All Gummies" description={`Shop all six Sugar Krewe gummy flavors. $${PRICE.toFixed(2)} per 4 oz bag, free shipping over $${FREE_SHIP_MIN}.`}>
+  <section class="wrap section">
+    <div class="section-head">
+      <p class="eyebrow gold">THE FULL KREWE</p>
+      <h1 class="section-title big">SHOP ALL<br /><span class="purple">GUMMIES</span></h1>
+      <p class="muted">${PRICE.toFixed(2)} per 4 oz bag · Free shipping over ${FREE_SHIP_MIN}</p>
+    </div>
+    <div class="grid">
+      {PRODUCTS.map((p) => <ProductCard product={p} headingLevel={2} />)}
+    </div>
+  </section>
+</Base>

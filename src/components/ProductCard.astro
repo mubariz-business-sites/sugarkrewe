@@ -1,0 +1,22 @@
+---
+import { PRICE } from '../data/site.js';
+const { product: p, headingLevel = 3 } = Astro.props;
+const H = `h${headingLevel}`;
+const t = p.theme;
+---
+<article class="card" style={`--bg:${t.bg};--accent:${t.accent};--glow:${t.glow};--text:${t.text};--badge:${t.badge}`}>
+  <a href={`/products/${p.slug}`} class="card-media">
+    <img src={`/images/${p.img}.webp`} alt={`Bag of ${p.name}`} loading="lazy" width="800" height="600" />
+    {p.halal && <span class="halal">حلال HALAL</span>}
+    <span class="card-flavor">{p.flavor}</span>
+  </a>
+  <div class="card-body">
+    <div class="card-tagline">{p.emoji} {p.tagline}</div>
+    <H class="card-name"><a href={`/products/${p.slug}`}>{p.name}</a></H>
+    <p class="card-desc">{p.desc}</p>
+    <div class="card-foot">
+      <div class="price"><span class="cur">$</span>{PRICE.toFixed(2)}<small>4 OZ BAG</small></div>
+      <button type="button" class="btn btn-accent" data-add={p.slug}>🛒 ADD TO BAG</button>
+    </div>
+  </div>
+</article>

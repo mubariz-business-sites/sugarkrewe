@@ -1,0 +1,55 @@
+---
+import Base from '../layouts/Base.astro';
+import ProductCard from '../components/ProductCard.astro';
+import { PRODUCTS } from '../data/products.js';
+const why = [
+  { icon: '🎷', title: 'NOLA SOUL', desc: 'Every flavor inspired by the music, culture, and spirit of New Orleans' },
+  { icon: '❤️', title: 'MADE WITH LOVE', desc: 'Small-batch crafted in Metairie, LA with big flavor and bigger heart' },
+  { icon: '✅', title: 'FAT FREE', desc: 'Guilt-free gummies that hit all the right notes' },
+  { icon: '✓', title: 'HALAL OPTIONS', desc: 'Five of our six flavors are Halal so everyone can celebrate' },
+];
+---
+<Base>
+  <section class="hero">
+    <div class="sparkles" aria-hidden="true">
+      {[...Array(16)].map((_, i) => (
+        <span style={`left:${5 + (i * 17) % 90}%;top:${10 + (i * 23) % 80}%;width:${(i % 3) * 3 + 3}px;height:${(i % 3) * 3 + 3}px;background:${['#ffd700', '#ff00ff', '#00ffff', '#ff8800', '#aa00ff'][i % 5]};animation-delay:${(i * 0.3) % 3}s`} />
+      ))}
+    </div>
+    <div class="hero-inner">
+      <p class="eyebrow">NEW ORLEANS · SMALL BATCH · METAIRIE, LA</p>
+      <h1 class="hero-title">SUGAR<br />KREWE</h1>
+      <p class="hero-sub">SWEET MUSIC. SWEET LIFE.</p>
+      <p class="hero-copy">Hand-crafted gummies inspired by the flavors, spirit, and soul of New Orleans. Every bag is a celebration.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-gold btn-lg" href="/shop">SHOP NOW</a>
+        <a class="btn btn-outline btn-lg" href="/about">OUR STORY</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap section">
+    <div class="section-head">
+      <p class="eyebrow gold">THE LINEUP</p>
+      <h2 class="section-title">6 FLAVORS.<br /><span class="purple">INFINITE GOOD TIMES.</span></h2>
+    </div>
+    <div class="grid">
+      {PRODUCTS.map((p) => <ProductCard product={p} />)}
+    </div>
+  </section>
+
+  <section class="why">
+    <div class="wrap">
+      <h2 class="section-title gold center">WHY SUGAR KREWE?</h2>
+      <div class="why-grid">
+        {why.map((w) => (
+          <div class="panel">
+            <div class="why-icon" aria-hidden="true">{w.icon}</div>
+            <h3>{w.title}</h3>
+            <p>{w.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</Base>

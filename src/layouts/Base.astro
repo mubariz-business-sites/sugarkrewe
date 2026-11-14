@@ -1,0 +1,120 @@
+---
+import { SITE, PRICE, FREE_SHIP_MIN, SHIPPING } from '../data/site.js';
+import { PRODUCTS } from '../data/products.js';
+import '../styles/global.css';
+
+const { title, description = SITE.description, image = '/images/mardi-gras-ring.jpg', noindex = false } = Astro.props;
+const pageTitle = title ? `${title} | ${SITE.name}` : `${SITE.name} — New Orleans Inspired Gummies`;
+const canonical = new URL(Astro.url.pathname, SITE.url).href;
+const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+const nav = [
+  { href: '/', label: 'Home' },
+  { href: '/shop', label: 'Shop' },
+  { href: '/about', label: 'About' },
+  { href: '/contact', label: 'Contact' },
+];
+const socials = Object.entries(SITE.social).filter(([, url]) => url);
+const cartData = PRODUCTS.map(({ slug, name, flavor, img, theme }) => ({ slug, name, flavor, img, accent: theme.accent }));
+const year = new Date().getFullYear();
+
+const orgLd = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  name: SITE.name,
+  url: SITE.url,
+  email: SITE.email,
+  description: SITE.description,
+  image: new URL('/images/mardi-gras-ring.jpg', SITE.url).href,
+  address: { '@type': 'PostalAddress', addressLocality: SITE.city, addressRegion: SITE.region, postalCode: SITE.postalCode, addressCountry: 'US' },
+  sameAs: socials.map(([, url]) => url),
+};
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>{pageTitle}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonical} />
+  {noindex && <meta name="robots" content="noindex" />}
+  <meta name="theme-color" content="#000000" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content={SITE.name} />
+  <meta property="og:title" content={pageTitle} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={canonical} />
+  <meta property="og:image" content={new URL(image, SITE.url).href} />
+  <meta name="twitter:card" content="summary_large_image" />
+  <script type="application/ld+json" set:html={JSON.stringify(orgLd)} />
+  <slot name="head" />
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="wrap header-row">
+      <a href="/" class="logo" aria-label="Sugar Krewe home">
+        <span class="logo-crown" aria-hidden="true">👑</span>
+        <span>
+          <span class="logo-name">SUGAR KREWE</span>
+          <span class="logo-sub">NEW ORLEANS INSPIRED</span>
+        </span>
+      </a>
+      <nav class="main-nav" id="main-nav" aria-label="Main">
+        {nav.map((n) => (
+          <a href={n.href} aria-current={path === n.href ? 'page' : undefined}>{n.label}</a>
+        ))}
+      </nav>
+      <div class="header-actions">
+        <button class="bag-btn" type="button" data-open-cart aria-label="Open your bag">
+          BAG <span class="bag-count" data-cart-count hidden>0</span>
+        </button>
+        <button class="menu-btn" type="button" aria-controls="main-nav" aria-expanded="false" aria-label="Menu">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      {[0, 1, 2, 3, 4, 5].map(() => <span>NEW ORLEANS INSPIRED · LOCALLY MADE · FAT FREE · MADE WITH LOVE ·</span>)}
+    </div>
+  </div>
+
+  <main id="main"><slot /></main>
+
+  <footer class="site-footer">
+    <div class="footer-name">👑 SUGAR KREWE</div>
+    <div class="footer-tag">GOOD MUSIC · GOOD VIBES · GOOD GUMMIES</div>
+    {socials.length > 0 && (
+      <div class="footer-social">
+        {socials.map(([k, url]) => <a href={url} rel="noopener" target="_blank">{k[0].toUpperCase() + k.slice(1)}</a>)}
+      </div>
+    )}
+    <div class="footer-small">© {year} Sugar Krewe · {SITE.city}, {SITE.region} · <a href={`mailto:${SITE.email}`}>{SITE.email}</a></div>
+    <div class="footer-small">Produced in a cottage kitchen, not a licensed or regulated facility.</div>
+  </footer>
+
+  <div class="cart-backdrop" data-cart hidden>
+    <aside class="cart" role="dialog" aria-modal="true" aria-labelledby="cart-title">
+      <div class="cart-head">
+        <h2 id="cart-title">YOUR BAG</h2>
+        <button type="button" class="icon-btn" data-close-cart aria-label="Close bag">✕</button>
+      </div>
+      <div data-cart-body></div>
+    </aside>
+  </div>
+
+  <script type="application/json" id="catalog" set:html={JSON.stringify({ products: cartData, price: PRICE, freeShipMin: FREE_SHIP_MIN, shipping: SHIPPING })} />
+  <script>
+    import { initCart } from '../scripts/cart.js';
+    initCart();
+    const btn = document.querySelector('.menu-btn');
+    const navEl = document.getElementById('main-nav');
+    btn?.addEventListener('click', () => {
+      const open = navEl.classList.toggle('open');
+      btn.setAttribute('aria-expanded', String(open));
+    });
+  </script>
+</body>
+</html>
