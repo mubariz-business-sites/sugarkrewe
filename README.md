@@ -32,7 +32,6 @@ the built site in `dist/` is served as files, and `worker/index.js` handles
 2. Build command `npm run build`, deploy command `npx wrangler deploy`, root directory `/`.
 3. **Settings → Variables and Secrets** → add a **Secret** named `STRIPE_SECRET_KEY`. Test with a `sk_test_…` key first, then switch to `sk_live_…`.
 4. **Settings → Domains & Routes** → add custom domains `sugarkrewe.com` and `www.sugarkrewe.com`.
-5. Once it works, turn off the Netlify site and delete `sugarkrewe-simple/`.
 
 Every push to `main` redeploys automatically.
 
@@ -42,8 +41,3 @@ Every push to `main` redeploys automatically.
 - **Fat Free:** the recipes include palm/coconut oil. Confirm a serving has under 0.5 g fat (the FDA rule for "fat free").
 - **Cottage food rules:** check with the Louisiana Department of Health whether cottage food products can be shipped, and to where. Checkout currently allows any US address; it can be limited to Louisiana in `checkout.js`.
 - Add your Instagram / Facebook / TikTok links in `src/data/site.js`.
-
-## Old site
-
-`sugarkrewe-simple/` is the old Netlify version. It stays until the Cloudflare
-site is live on sugarkrewe.com, then it can be deleted (and the Netlify site turned off).
