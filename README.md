@@ -22,15 +22,19 @@ npm install
 npm run dev
 ```
 
-## Deploy on Cloudflare Pages (free)
+## Deploy on Cloudflare (free)
 
-1. Cloudflare dashboard → **Workers & Pages → Create → Pages → Connect to Git** → pick this repo.
-2. Build settings: Framework **Astro**, build command `npm run build`, output directory `dist`.
-3. **Settings → Variables and Secrets** → add secret `STRIPE_SECRET_KEY` (from Stripe → Developers → API keys). Use a `sk_test_…` key first, test an order, then switch to `sk_live_…`.
-4. **Custom domains** → add `sugarkrewe.com` and `www.sugarkrewe.com`. The domain is already on Cloudflare, so it connects automatically.
-5. Once the Cloudflare version works, turn off the Netlify site so there is only one.
+This runs as a **Cloudflare Worker** with static assets (`wrangler.jsonc`):
+the built site in `dist/` is served as files, and `worker/index.js` handles
+`POST /api/checkout` using `functions/api/checkout.js`.
 
-Every push to the main branch redeploys automatically.
+1. Cloudflare → **Workers & Pages** → the `sugarkrewe` Worker, connected to this repo, branch `main`.
+2. Build command `npm run build`, deploy command `npx wrangler deploy`, root directory `/`.
+3. **Settings → Variables and Secrets** → add a **Secret** named `STRIPE_SECRET_KEY`. Test with a `sk_test_…` key first, then switch to `sk_live_…`.
+4. **Settings → Domains & Routes** → add custom domains `sugarkrewe.com` and `www.sugarkrewe.com`.
+5. Once it works, turn off the Netlify site and delete `sugarkrewe-simple/`.
+
+Every push to `main` redeploys automatically.
 
 ## Before going live — owner checks
 

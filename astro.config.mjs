@@ -4,6 +4,7 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   site: 'https://sugarkrewe.com',
   output: 'static',
-  trailingSlash: 'ignore',
+  trailingSlash: 'never',
+  build: { format: 'file' },
   integrations: [sitemap({ filter: (page) => !page.includes('/success') })],
 });
