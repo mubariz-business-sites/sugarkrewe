@@ -17,6 +17,16 @@ export const SITE = {
   },
 };
 
+// Halal certificate. Put the file in public/halal/ (e.g. public/halal/certificate.pdf
+// or certificate.jpg) and fill in the details. While `file` is empty the Halal
+// page says the certificate is coming soon.
+export const HALAL_CERT = {
+  file: '', // e.g. '/halal/certificate.pdf'
+  issuer: '', // certifying organization
+  number: '', // certificate number
+  expires: '', // e.g. 'December 31, 2027'
+};
+
 export const PRICE = 6.99; // per 4 oz bag. Must match functions/api/checkout.js
 export const FREE_SHIP_MIN = 35;
 export const SHIPPING = 5.99;

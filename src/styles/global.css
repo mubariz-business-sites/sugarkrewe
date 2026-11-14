@@ -219,3 +219,21 @@ button { font: inherit; }
 }
 .bag-count[hidden] { display: none; }
 @media (max-width: 420px) { .logo-sub { letter-spacing: 2px; } .logo-crown { font-size: 22px; } }
+
+/* Halal */
+a.halal { text-decoration: none; }
+.halal-note { font-size: 13px; color: #8fffb0; margin: -6px 0 16px; }
+.halal-note a { color: #2eff66; }
+.panel-link { display: inline-block; margin-top: 12px; font-size: 12px; color: #2eff66; }
+.halal-hero { font-size: 44px; margin-bottom: 10px; }
+.halal-flavors { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(240px, 100%), 1fr)); gap: 12px; }
+.halal-flavors a { display: flex; gap: 12px; align-items: center; text-decoration: none; background: var(--panel); border: 1px solid #1a6e2e; border-radius: 14px; padding: 10px; font-weight: 700; font-size: 14px; }
+.halal-flavors img { width: 56px; height: 44px; object-fit: cover; border-radius: 8px; }
+.cert { text-align: center; }
+.cert img { margin: 16px auto 0; border-radius: 12px; border: 1px solid #2eff6655; max-height: 900px; width: auto; }
+.cert dl { display: grid; grid-template-columns: auto 1fr; gap: 6px 16px; text-align: left; max-width: 420px; margin: 0 auto 8px; font-size: 14px; }
+.cert dt { color: var(--purple); font-size: 11px; letter-spacing: 2px; align-self: center; }
+.cert dd { margin: 0; }
+.cert-pending { border: 2px dashed #1a6e2e; }
+.stack { display: flex; flex-direction: column; gap: 20px; }
+.stack h2 { font-size: 20px; margin-bottom: 12px; }

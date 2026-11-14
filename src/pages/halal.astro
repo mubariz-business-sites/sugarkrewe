@@ -1,0 +1,53 @@
+---
+import Base from '../layouts/Base.astro';
+import { PRODUCTS } from '../data/products.js';
+import { HALAL_CERT, SITE } from '../data/site.js';
+const halal = PRODUCTS.filter((p) => p.halal);
+const cert = HALAL_CERT;
+const isPdf = cert.file.toLowerCase().endsWith('.pdf');
+---
+<Base title="Halal Certificate" description="Sugar Krewe gummies are Halal. See which flavors are Halal and view our Halal certificate.">
+  <section class="wrap narrow section">
+    <div class="section-head">
+      <div class="halal-hero" aria-hidden="true">☪️</div>
+      <p class="eyebrow gold">HALAL</p>
+      <h1 class="section-title big">HALAL<br /><span class="purple">GUMMIES</span></h1>
+      <p class="muted">We want everyone to be able to join the Krewe. Here's where you can check that our gummies are Halal.</p>
+    </div>
+
+    <div class="stack">
+      <div class={`panel cert${cert.file ? '' : ' cert-pending'}`}>
+        <h2>OUR HALAL CERTIFICATE</h2>
+        {cert.file ? (
+          <>
+            <dl>
+              {cert.issuer && <><dt>CERTIFIED BY</dt><dd>{cert.issuer}</dd></>}
+              {cert.number && <><dt>CERTIFICATE NO.</dt><dd>{cert.number}</dd></>}
+              {cert.expires && <><dt>VALID UNTIL</dt><dd>{cert.expires}</dd></>}
+            </dl>
+            {isPdf ? (
+              <p><a class="btn btn-gold" href={cert.file} target="_blank" rel="noopener">VIEW CERTIFICATE (PDF)</a></p>
+            ) : (
+              <a href={cert.file} target="_blank" rel="noopener"><img src={cert.file} alt="Sugar Krewe Halal certificate" loading="lazy" /></a>
+            )}
+          </>
+        ) : (
+          <p class="muted">Our Halal certificate will be posted here soon. In the meantime, email us at <a href={`mailto:${SITE.email}`}>{SITE.email}</a> and we'll send you a copy.</p>
+        )}
+      </div>
+
+      <div class="panel">
+        <h2>HALAL FLAVORS</h2>
+        <ul class="halal-flavors">
+          {halal.map((p) => (
+            <li><a href={`/products/${p.slug}`}><img src={`/images/${p.img}.webp`} alt="" width="56" height="44" />{p.emoji} {p.name}</a></li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="panel prose">
+        <p>Questions about our ingredients or Halal status? Email <a href={`mailto:${SITE.email}`}>{SITE.email}</a>. We're happy to help.</p>
+      </div>
+    </div>
+  </section>
+</Base>

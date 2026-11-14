@@ -12,6 +12,7 @@ Stripe Checkout handled by a Cloudflare Pages Function (`functions/api/checkout.
 | Products, descriptions, ingredients | `src/data/products.js` |
 | Price, shipping, email, social links | `src/data/site.js` |
 | Price actually charged at checkout | `functions/api/checkout.js` (keep in sync with `site.js`) |
+| Halal certificate (page at /halal) | put the file in `public/halal/`, then fill in `HALAL_CERT` in `src/data/site.js` |
 | Product photos | `public/images/` (`.webp` for the site, `.jpg` for social share previews) |
 | Colors and layout | `src/styles/global.css` |
 
