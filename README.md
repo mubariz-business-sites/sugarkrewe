@@ -42,3 +42,10 @@ Every push to `main` redeploys automatically.
 - **Fat Free:** the recipes include palm/coconut oil. Confirm a serving has under 0.5 g fat (the FDA rule for "fat free").
 - **Cottage food rules:** check with the Louisiana Department of Health whether cottage food products can be shipped, and to where. Checkout currently allows any US address; it can be limited to Louisiana in `checkout.js`.
 - Add your Instagram / Facebook / TikTok links in `src/data/site.js`.
+
+## Instagram posting
+
+`social/` holds the scheduled Instagram posts (`schedule.json`, `CAPTIONS.txt`);
+the images are served from `public/social/`. `social/ig-post.sh <n>` publishes
+post `n` to @sugarkrewegummies through Meta's Graph API. The access token lives
+in the Claude cloud environment (injected for graph.facebook.com), not in this repo.
