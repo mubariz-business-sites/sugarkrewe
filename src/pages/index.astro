@@ -1,4 +1,5 @@
 ---
+import { SITE } from '../data/site.js';
 import Base from '../layouts/Base.astro';
 import ProductCard from '../components/ProductCard.astro';
 import { PRODUCTS } from '../data/products.js';
@@ -53,4 +54,13 @@ const why = [
       </div>
     </div>
   </section>
+
+  {SITE.social.instagram && (
+    <section class="wrap narrow section center follow">
+      <p class="eyebrow gold">FOLLOW THE KREWE</p>
+      <h2 class="section-title">SEE WHAT'S<br /><span class="purple">FRESH OUT THE KITCHEN</span></h2>
+      <p class="muted">New batches, Mardi Gras drops, giveaways and behind-the-scenes. Follow us on Instagram.</p>
+      <a class="btn btn-gold btn-lg" href={SITE.social.instagram} rel="noopener" target="_blank">@SUGARKREWEGUMMIES ON INSTAGRAM</a>
+    </section>
+  )}
 </Base>

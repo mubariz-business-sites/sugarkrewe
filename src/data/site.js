@@ -11,7 +11,7 @@ export const SITE = {
   postalCode: '70003',
   // Paste the full profile links here. Any left empty are hidden on the site.
   social: {
-    instagram: '',
+    instagram: 'https://www.instagram.com/sugarkrewegummies/',
     facebook: '',
     tiktok: '',
   },
