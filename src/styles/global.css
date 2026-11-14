@@ -237,3 +237,4 @@ a.halal { text-decoration: none; }
 .cert-pending { border: 2px dashed #1a6e2e; }
 .stack { display: flex; flex-direction: column; gap: 20px; }
 .stack h2 { font-size: 20px; margin-bottom: 12px; }
+.muted.small { font-size: 12px; }

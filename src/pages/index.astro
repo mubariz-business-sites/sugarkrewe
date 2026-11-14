@@ -6,7 +6,7 @@ const why = [
   { icon: '🎷', title: 'NOLA SOUL', desc: 'Every flavor inspired by the music, culture, and spirit of New Orleans' },
   { icon: '❤️', title: 'MADE WITH LOVE', desc: 'Small-batch crafted in Metairie, LA with big flavor and bigger heart' },
   { icon: '✅', title: 'FAT FREE', desc: 'Guilt-free gummies that hit all the right notes' },
-  { icon: '✓', title: 'HALAL OPTIONS', desc: 'All six flavors are Halal so everyone can celebrate', href: '/halal' },
+  { icon: '✓', title: 'HALAL INGREDIENTS', desc: 'Every flavor is made with Halal-certified ingredients so everyone can celebrate', href: '/halal' },
 ];
 ---
 <Base>
@@ -47,7 +47,7 @@ const why = [
             <div class="why-icon" aria-hidden="true">{w.icon}</div>
             <h3>{w.title}</h3>
             <p>{w.desc}</p>
-            {w.href && <a class="panel-link" href={w.href}>See our Halal certificate →</a>}
+            {w.href && <a class="panel-link" href={w.href}>See the Halal certificate →</a>}
           </div>
         ))}
       </div>

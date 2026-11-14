@@ -33,7 +33,7 @@ const ld = {
     <div class="product" style={`--bg:${t.bg};--accent:${t.accent};--glow:${t.glow};--text:${t.text};--badge:${t.badge}`}>
       <div class="product-media">
         <img src={`/images/${p.img}.webp`} alt={`Bag of ${p.name}`} width="800" height="600" />
-        {p.halal && <a class="halal" href="/halal">حلال HALAL</a>}
+        {p.halal && <a class="halal" href="/halal" title="Made with Halal-certified ingredients">حلال HALAL INGREDIENTS</a>}
       </div>
       <div class="product-info" data-buy>
         <p class="card-tagline">{p.emoji} SUGAR KREWE</p>
@@ -42,7 +42,7 @@ const ld = {
         <p class="product-desc">{p.desc}</p>
         <div class="flavor-box">FLAVOR: {p.flavor.toUpperCase()}</div>
         <ul class="tags">{p.tags.map((tag) => <li>✓ {tag}</li>)}</ul>
-        {p.halal && <p class="halal-note">☑ Halal — <a href="/halal">view our Halal certificate</a></p>}
+        {p.halal && <p class="halal-note">☑ Made with Halal-certified ingredients — <a href="/halal">view the certificate</a></p>}
         <h2 class="small-head">INGREDIENTS</h2>
         <p class="ingredients">{p.ingredients}</p>
         <div class="buy-box">

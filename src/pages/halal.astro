@@ -1,43 +1,42 @@
 ---
 import Base from '../layouts/Base.astro';
 import { PRODUCTS } from '../data/products.js';
-import { HALAL_CERT, SITE } from '../data/site.js';
+import { HALAL_CERTS, SITE } from '../data/site.js';
 const halal = PRODUCTS.filter((p) => p.halal);
-const cert = HALAL_CERT;
-const isPdf = cert.file.toLowerCase().endsWith('.pdf');
 ---
-<Base title="Halal Certificate" description="Sugar Krewe gummies are Halal. See which flavors are Halal and view our Halal certificate.">
+<Base title="Halal Ingredients" description="Sugar Krewe gummies are made with Halal-certified ingredients. See which flavors and view our supplier's Halal certificate.">
   <section class="wrap narrow section">
     <div class="section-head">
       <div class="halal-hero" aria-hidden="true">☪️</div>
       <p class="eyebrow gold">HALAL</p>
-      <h1 class="section-title big">HALAL<br /><span class="purple">GUMMIES</span></h1>
-      <p class="muted">We want everyone to be able to join the Krewe. Here's where you can check that our gummies are Halal.</p>
+      <h1 class="section-title big">MADE WITH<br /><span class="purple">HALAL-CERTIFIED INGREDIENTS</span></h1>
+      <p class="muted">We want everyone to be able to join the Krewe. Our gummies are made in small batches in {SITE.city}, {SITE.region} using Halal-certified ingredients. Here's the paperwork so you can check for yourself.</p>
     </div>
 
     <div class="stack">
-      <div class={`panel cert${cert.file ? '' : ' cert-pending'}`}>
-        <h2>OUR HALAL CERTIFICATE</h2>
-        {cert.file ? (
-          <>
-            <dl>
-              {cert.issuer && <><dt>CERTIFIED BY</dt><dd>{cert.issuer}</dd></>}
-              {cert.number && <><dt>CERTIFICATE NO.</dt><dd>{cert.number}</dd></>}
-              {cert.expires && <><dt>VALID UNTIL</dt><dd>{cert.expires}</dd></>}
-            </dl>
-            {isPdf ? (
-              <p><a class="btn btn-gold" href={cert.file} target="_blank" rel="noopener">VIEW CERTIFICATE (PDF)</a></p>
-            ) : (
-              <a href={cert.file} target="_blank" rel="noopener"><img src={cert.file} alt="Sugar Krewe Halal certificate" loading="lazy" /></a>
-            )}
-          </>
-        ) : (
+      {HALAL_CERTS.length ? HALAL_CERTS.map((c) => (
+        <div class="panel cert">
+          <h2>{c.label.toUpperCase()}</h2>
+          <dl>
+            {c.holder && <><dt>ISSUED TO</dt><dd>{c.holder}</dd></>}
+            {c.issuer && <><dt>CERTIFIED BY</dt><dd>{c.issuer}</dd></>}
+            {c.number && <><dt>CERTIFICATE NO.</dt><dd>{c.number}</dd></>}
+            {c.covers && <><dt>COVERS</dt><dd>{c.covers}</dd></>}
+            {c.expires && <><dt>VALID UNTIL</dt><dd>{c.expires}</dd></>}
+          </dl>
+          {c.image && <a href={c.file || c.image} target="_blank" rel="noopener"><img src={c.image} alt={`${c.label} — ${c.issuer}`} loading="lazy" width="935" height="1210" /></a>}
+          {c.file && <p><a class="btn btn-gold" href={c.file} target="_blank" rel="noopener">VIEW FULL CERTIFICATE (PDF)</a></p>}
+          <p class="muted small">This certificate is issued to our ingredient supplier, not to Sugar Krewe. You can verify it with the QR code on the certificate.</p>
+        </div>
+      )) : (
+        <div class="panel cert cert-pending">
+          <h2>HALAL CERTIFICATE</h2>
           <p class="muted">Our Halal certificate will be posted here soon. In the meantime, email us at <a href={`mailto:${SITE.email}`}>{SITE.email}</a> and we'll send you a copy.</p>
-        )}
-      </div>
+        </div>
+      )}
 
       <div class="panel">
-        <h2>HALAL FLAVORS</h2>
+        <h2>FLAVORS MADE WITH HALAL-CERTIFIED INGREDIENTS</h2>
         <ul class="halal-flavors">
           {halal.map((p) => (
             <li><a href={`/products/${p.slug}`}><img src={`/images/${p.img}.webp`} alt="" width="56" height="44" />{p.emoji} {p.name}</a></li>
@@ -46,7 +45,7 @@ const isPdf = cert.file.toLowerCase().endsWith('.pdf');
       </div>
 
       <div class="panel prose">
-        <p>Questions about our ingredients or Halal status? Email <a href={`mailto:${SITE.email}`}>{SITE.email}</a>. We're happy to help.</p>
+        <p>Questions about our ingredients? Email <a href={`mailto:${SITE.email}`}>{SITE.email}</a>. We're happy to help.</p>
       </div>
     </div>
   </section>

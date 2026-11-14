@@ -17,15 +17,20 @@ export const SITE = {
   },
 };
 
-// Halal certificate. Put the file in public/halal/ (e.g. public/halal/certificate.pdf
-// or certificate.jpg) and fill in the details. While `file` is empty the Halal
-// page says the certificate is coming soon.
-export const HALAL_CERT = {
-  file: '', // e.g. '/halal/certificate.pdf'
-  issuer: '', // certifying organization
-  number: '', // certificate number
-  expires: '', // e.g. 'December 31, 2027'
-};
+// Halal certificates shown on /halal. Put files in public/halal/.
+// `image` is shown on the page, `file` is the full PDF to open/download.
+export const HALAL_CERTS = [
+  {
+    label: "Our ingredient supplier's Halal certificate",
+    holder: 'Kervan Gıda Sanayi ve Ticaret A.Ş. (Akhisar, Türkiye)',
+    issuer: 'Turkish Standards Institution (TSE)',
+    number: '008002-HG-02/08',
+    covers: 'Soft candy and chewing gum (Bebeto brand)',
+    expires: 'September 10, 2027',
+    image: '/halal/kervan-tse-halal-certificate.jpg',
+    file: '/halal/kervan-tse-halal-certificate.pdf',
+  },
+];
 
 export const PRICE = 6.99; // per 4 oz bag. Must match functions/api/checkout.js
 export const FREE_SHIP_MIN = 35;

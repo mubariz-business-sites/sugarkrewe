@@ -7,7 +7,7 @@ const t = p.theme;
 <article class="card" style={`--bg:${t.bg};--accent:${t.accent};--glow:${t.glow};--text:${t.text};--badge:${t.badge}`}>
   <a href={`/products/${p.slug}`} class="card-media">
     <img src={`/images/${p.img}.webp`} alt={`Bag of ${p.name}`} loading="lazy" width="800" height="600" />
-    {p.halal && <span class="halal">حلال HALAL</span>}
+    {p.halal && <span class="halal" title="Made with Halal-certified ingredients">حلال HALAL INGREDIENTS</span>}
     <span class="card-flavor">{p.flavor}</span>
   </a>
   <div class="card-body">

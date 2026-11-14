@@ -14,7 +14,7 @@ export const PRODUCTS = [
     desc: 'A sweet harmony of juicy berries with a gummy groove that hits all the right notes. New Orleans jazz in every bite.',
     theme: { bg: '#1a0030', accent: '#ff00ff', glow: '#cc00ff', text: '#ffaaff', badge: '#7b00cc' },
     img: 'jazzberry',
-    tags: ['Fat Free', 'Locally Made', 'Soft & Chewy', 'Halal'],
+    tags: ['Fat Free', 'Locally Made', 'Soft & Chewy', 'Halal-Certified Ingredients'],
     ingredients: BASE_INGREDIENTS,
   },
   {
@@ -27,7 +27,7 @@ export const PRODUCTS = [
     desc: 'Bold tropical flavors that hit like a Category 5! Made for thrill seekers and flavor chasers.',
     theme: { bg: '#000d1a', accent: '#00ffff', glow: '#0088ff', text: '#aaddff', badge: '#0055aa' },
     img: 'hurricane',
-    tags: ['Fat Free', 'Locally Made', 'Soft & Chewy', 'Halal'],
+    tags: ['Fat Free', 'Locally Made', 'Soft & Chewy', 'Halal-Certified Ingredients'],
     ingredients: BASE_INGREDIENTS,
   },
   {
@@ -40,7 +40,7 @@ export const PRODUCTS = [
     desc: 'A sweet harmony of juicy fruit flavors with a gummy groove. Laissez les bons temps rouler!',
     theme: { bg: '#0d0018', accent: '#ffd700', glow: '#aa00ff', text: '#ffdd88', badge: '#6600aa' },
     img: 'mardi-gras-ring',
-    tags: ['Fat Free', 'Locally Made', 'Soft & Chewy', 'Halal'],
+    tags: ['Fat Free', 'Locally Made', 'Soft & Chewy', 'Halal-Certified Ingredients'],
     ingredients: BASE_INGREDIENTS,
   },
   {
@@ -53,7 +53,7 @@ export const PRODUCTS = [
     desc: 'Inspired by the joy of Mardi Gras and the magic of catching beads on Bourbon Street.',
     theme: { bg: '#0a1500', accent: '#00ff44', glow: '#aaff00', text: '#bbffaa', badge: '#007722' },
     img: 'throw-me-bear',
-    tags: ['Fat Free', 'Locally Made', 'Soft & Chewy', 'Halal'],
+    tags: ['Fat Free', 'Locally Made', 'Soft & Chewy', 'Halal-Certified Ingredients'],
     ingredients: BASE_INGREDIENTS,
   },
   {
@@ -66,7 +66,7 @@ export const PRODUCTS = [
     desc: 'From the heart of the bayou comes a little bit of sweetness. Inspired by Louisiana swamps and Southern tradition.',
     theme: { bg: '#001a08', accent: '#44ff88', glow: '#00cc44', text: '#aaffcc', badge: '#005522' },
     img: 'bayou-bliss',
-    tags: ['Fat Free', 'Locally Made', 'Soft & Chewy', 'Halal'],
+    tags: ['Fat Free', 'Locally Made', 'Soft & Chewy', 'Halal-Certified Ingredients'],
     ingredients: BASE_INGREDIENTS,
   },
   {
@@ -79,7 +79,7 @@ export const PRODUCTS = [
     desc: 'Bold, bright, and bursting with flavor. Sour and classic gummy worms for the ultimate New Orleans inspired treat. Join the Krewe!',
     theme: { bg: '#0a1800', accent: '#aaff00', glow: '#44ff00', text: '#ccff88', badge: '#336600' },
     img: 'krewe-crawlers',
-    tags: ['Fat Free', 'Locally Made', 'Sour & Delicious', 'Halal'],
+    tags: ['Fat Free', 'Locally Made', 'Sour & Delicious', 'Halal-Certified Ingredients'],
     ingredients:
       'Corn Syrup, Sugar, Beef Gelatine, Citric Acid, Artificial Flavor, Pectin, Vegetable Oil (Coconut), Carnauba Wax, Colors (Red 40, Yellow 5, Blue 1, Yellow 6, Titanium Dioxide). May contain gluten.',
   },
