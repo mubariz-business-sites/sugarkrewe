@@ -28,7 +28,6 @@ export const HALAL_CERTS = [
     covers: 'Soft candy and chewing gum (Bebeto brand)',
     expires: 'September 10, 2027',
     image: '/halal/kervan-tse-halal-certificate.jpg',
-    file: '/halal/kervan-tse-halal-certificate.pdf',
   },
 ];
 
